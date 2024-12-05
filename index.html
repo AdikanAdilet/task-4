@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            background-color: #4a9cb5;
+            padding: 10px;
+            color: white;
+        }
+        .menu{
+            display: flex;
+            
+        }
+        a{
+            align-self: center;
+            margin-right: 10px;
+            text-decoration: none;
+        }
+        
+        form {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: none;
+            
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, button {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+        }
+        button {
+            background-color: #002984;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 150px;
+        }
+        
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1>Twitter</h1>
+    <div class="menu">
+        <a href="#">Tweets</a>
+        <a href="index.html">Login</a>
+        <a href="register.html">Register</a>
+    </div>
+</div>
+<form id="login-form">
+    <h2>Login</h2>
+    <label for="email">EMAIL:</label>
+    <input type="email" id="email" required>
+
+    <label for="password">PASSWORD:</label>
+    <input type="password" id="password" required>
+
+    <button type="submit">SIGN IN</button>
+</form>
+
+<script>
+    const loginForm = document.getElementById('login-form');
+
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Получаем данные из формы
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        // Получаем список пользователей из localStorage
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+
+        // Проверяем пользователя
+        const user = users.find(user => user.email === email && user.password === password);
+
+        if (user) {
+            localStorage.setItem('currentUser', JSON.stringify(user)); // Сохраняем текущего пользователя
+            alert('Login successful!');
+            window.location.href = 'profile.html'; // Переходим на страницу профиля
+        } else {
+            alert('Invalid email or password!');
+        }
+    });
+</script>
+</body>
+</html>

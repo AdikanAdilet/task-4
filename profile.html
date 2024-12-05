@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            background-color: #4a9cb5;
+            padding: 10px;
+            color: white;
+        }
+        .menu{
+            display: flex;
+            
+        }
+        a{
+            align-self: center;
+            margin-right: 10px;
+            text-decoration: none;
+            color:#999;
+        }
+        form {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: none;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1>Twitter</h1>
+    <div class="menu">
+        <a  id="l1" href="#">Tweets</a>
+        <a id="l2" href="#"></a>
+        <a id="l3" href="index.html">Logout</a>
+    </div>
+</div>
+<form id="register-form">
+    <h2>Register</h2>
+    <label for="email">EMAIL:</label>
+    <label style="font-weight: 800; margin-bottom: 15px;" id="email_text"></label>
+    
+    <label for="fullname">FULL NAME:</label>
+    <label style="font-weight: 800; margin-bottom: 15px;" id="fullname_text"></label>
+    
+    <label for="country">COUNTRY:</label>
+    <label style="font-weight: 800; margin-bottom: 15px;" id="country_text"></label>
+
+    <label for="birthdate">BIRTHDATE:</label>
+    <label style="font-weight: 800; margin-bottom: 15px;" id="birthdate_text"></label>
+    
+</form>
+
+<script>
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(user);
+
+    document.getElementById('l2').innerHTML = user.fullname;
+
+    document.getElementById('email_text').innerHTML = user.email;
+    document.getElementById('fullname_text').innerHTML = user.fullname;
+    document.getElementById('country_text').innerHTML = user.country;
+    document.getElementById('birthdate_text').innerHTML = user.birthdate;
+    
+    
+</script>
+</body>
+</html>

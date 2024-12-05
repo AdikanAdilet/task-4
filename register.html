@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            background-color: #4a9cb5;
+            padding: 10px;
+            color: white;
+        }
+        .menu{
+            display: flex;
+            
+        }
+        a{
+            align-self: center;
+            margin-right: 10px;
+            text-decoration: none;
+        }
+        form {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: none;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+        }
+        button {
+            background-color: #002984;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1>Twitter</h1>
+    <div class="menu">
+        <a href="#">Tweets</a>
+        <a href="index.html">Login</a>
+        <a href="register.html">Register</a>
+    </div>
+</div>
+<form id="register-form">
+    <h2>Register</h2>
+    <label for="email">EMAIL:</label>
+    <input type="email" id="email" required>
+
+    <label for="password">PASSWORD:</label>
+    <input type="password" id="password" required>
+
+    <label for="fullname">FULL NAME:</label>
+    <input type="text" id="fullname" required>
+
+    <label for="country">COUNTRY:</label>
+    <select id="country">
+        <option value="Kazakhstan">Kazakhstan</option>
+        <option value="USA">USA</option>
+        <option value="Italy">Italy</option>
+    </select>
+
+    <label for="birthdate">BIRTHDATE:</label>
+    <input type="date" id="birthdate" required>
+
+    <button type="submit">REGISTER</button>
+</form>
+
+<script>
+    const registerForm = document.getElementById('register-form');
+
+    registerForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Получаем данные из формы
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const fullname = document.getElementById('fullname').value;
+        const country = document.getElementById('country').value;
+        const birthdate = document.getElementById('birthdate').value;
+
+        // Получаем список пользователей из localStorage
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+
+        // Проверяем, существует ли уже пользователь с таким email
+        if (users.find(user => user.email === email)) {
+            alert('User with this email already exists!');
+            return;
+        }
+
+        // Добавляем нового пользователя
+        users.push({ email, password, fullname, country, birthdate });
+        localStorage.setItem('users', JSON.stringify(users));
+
+        alert('Registration successful!');
+        window.location.href = 'index.html'; // Переходим на страницу входа
+    });
+</script>
+</body>
+</html>
